@@ -1,4 +1,4 @@
-package org.soujava.samples.ai.patterns;
+package org.soujava.samples.ai.patterns.rag;
 
 import dev.langchain4j.data.document.Document;
 import dev.langchain4j.data.document.splitter.DocumentSplitters;

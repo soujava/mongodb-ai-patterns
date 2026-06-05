@@ -1,4 +1,4 @@
-package org.soujava.samples.ai.patterns;
+package org.soujava.samples.ai.patterns.rag;
 
 import dev.langchain4j.data.segment.TextSegment;
 import dev.langchain4j.model.chat.ChatModel;
