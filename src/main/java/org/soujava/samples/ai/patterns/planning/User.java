@@ -4,10 +4,15 @@ import jakarta.nosql.Column;
 import jakarta.nosql.Entity;
 import jakarta.nosql.Id;
 
+import java.util.UUID;
+
 @Entity
 public class User {
 
     @Id
+    private UUID id;
+
+    @Column
     private String email;
 
     @Column
@@ -28,6 +33,7 @@ public class User {
         User user = new User();
         user.email = email;
         user.name = name;
+        user.id = UUID.randomUUID();
         return user;
     }
 }
