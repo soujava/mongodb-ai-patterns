@@ -1,4 +1,4 @@
-package org.soujava.ai.mongodb;
+package org.soujava.samples.ai.patterns;
 
 import dev.langchain4j.data.document.Document;
 import dev.langchain4j.data.document.splitter.DocumentSplitters;

@@ -1,4 +1,4 @@
-package org.soujava.ai.mongodb;
+package org.soujava.samples.ai.patterns;
 
 import dev.langchain4j.data.segment.TextSegment;
 import dev.langchain4j.model.chat.ChatModel;
