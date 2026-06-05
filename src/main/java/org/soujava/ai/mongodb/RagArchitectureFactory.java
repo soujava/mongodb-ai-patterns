@@ -1,4 +1,4 @@
-package expert.os.books.architecture.patterns.rag;
+package org.soujava.ai.mongodb;
 
 import dev.langchain4j.data.segment.TextSegment;
 import dev.langchain4j.model.chat.ChatModel;

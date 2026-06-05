@@ -1,4 +1,4 @@
-package expert.os.books.architecture.patterns.rag;
+package org.soujava.ai.mongodb;
 
 import dev.langchain4j.data.document.Document;
 import dev.langchain4j.data.document.splitter.DocumentSplitters;
