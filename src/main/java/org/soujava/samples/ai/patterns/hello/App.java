@@ -1,6 +1,5 @@
 package org.soujava.samples.ai.patterns.hello;
 
-import expert.os.books.architecture.patterns.AssistantService;
 import jakarta.enterprise.context.control.RequestContextController;
 import jakarta.enterprise.inject.se.SeContainer;
 import jakarta.enterprise.inject.se.SeContainerInitializer;
