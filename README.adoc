@@ -1,0 +1,3 @@
+# MongoDB AI Patterns
+
+This repository explore the capability of using MongoDB and some patterns
