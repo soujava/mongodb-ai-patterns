@@ -21,6 +21,10 @@ public class User {
     User() {
     }
 
+    public UUID getId() {
+        return id;
+    }
+
     public String getEmail() {
         return email;
     }
