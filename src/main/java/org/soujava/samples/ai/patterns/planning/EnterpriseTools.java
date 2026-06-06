@@ -7,12 +7,6 @@ import jakarta.enterprise.context.ApplicationScoped;
 @ApplicationScoped
 public class EnterpriseTools {
 
-    // Tool A
-    @Tool("Finds the internal Customer ID given a customer's email address.")
-    public String getCustomerIdByEmail(String email) {
-        System.out.println("[TOOL EXECUTION] Searching DB for email: " + email);
-        return "CUST-9988"; // Mock database lookup
-    }
 
     // Tool B (Requires the output of Tool A)
     @Tool("Finds the active Order Number for a given internal Customer ID.")
