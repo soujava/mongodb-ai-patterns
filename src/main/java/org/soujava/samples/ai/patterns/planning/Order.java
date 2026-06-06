@@ -13,4 +13,8 @@ public record Order(@Id UUID id, @Column String email, @Column String product, @
     public static Order of(String email, String product) {
         return new Order(UUID.randomUUID(), email, product, OrderStatus.PLACED);
     }
+
+    public Order cancel() {
+        return new Order(id, email, product, OrderStatus.CANCELLED);
+    }
 }
