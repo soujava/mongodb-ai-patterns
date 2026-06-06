@@ -7,5 +7,6 @@ import jakarta.nosql.Id;
 import java.util.UUID;
 
 @Entity
-public record Order(@Id UUID id, @Column String email, @Column String product) {
+public record Order(@Id UUID id, @Column String email, @Column String product, @Column OrderStatus status) {
+    
 }
