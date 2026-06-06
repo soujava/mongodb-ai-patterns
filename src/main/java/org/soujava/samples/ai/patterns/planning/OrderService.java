@@ -4,8 +4,14 @@ import dev.langchain4j.agent.tool.Tool;
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.inject.Inject;
 
+import java.util.Optional;
+import java.util.UUID;
+import java.util.logging.Logger;
+
 @ApplicationScoped
 public class OrderService {
+
+    private static final Logger LOGGER = Logger.getLogger(OrderService.class.getName());
 
     private final OrderRepository repository;
 
@@ -17,11 +23,9 @@ public class OrderService {
     // Tool B (Requires the output of Tool A)
     @Tool("Finds the active Order Number for a given internal Customer ID.")
     public String getActiveOrderNumber(String customerId) {
-        System.out.println("[TOOL EXECUTION] Looking up order for ID: " + customerId);
-        if (customerId.equals("CUST-9988")) {
-            return "ORD-12345";
-        }
-        return "NO_ACTIVE_ORDERS";
+        LOGGER.info("[TOOL EXECUTION] Looking up order for ID: " + customerId);
+        Optional<Order> order = repository.findByCustomerId(UUID.fromString(customerId));
+        return order.map(Order::id).map(UUID::toString).orElse("NO_ACTIVE_ORDERS");
     }
 
     // Tool C (Requires the output of Tool B)
