@@ -24,7 +24,7 @@ public class UserService {
         LOGGER.info("[TOOL EXECUTION] Searching DB for email: " + email);
         Optional<User> user = this.userRepository.findByEmail(email);
         LOGGER.info("[TOOL EXECUTION] User found: " + user.isPresent());
-        return user.map(u -> "CUST-" + u.getEmail().hashCode()).orElse("USER_NOT_FOUND");
+        return user.map(u -> u.getId().toString()).orElse("USER_NOT_FOUND");
     }
 
 }
