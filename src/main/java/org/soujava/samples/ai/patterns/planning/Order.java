@@ -4,6 +4,8 @@ import jakarta.nosql.Column;
 import jakarta.nosql.Entity;
 import jakarta.nosql.Id;
 
+import java.util.UUID;
+
 @Entity
-public record Order(@Id String id, @Column String email, @Column String product) {
+public record Order(@Id UUID id, @Column String email, @Column String product) {
 }
