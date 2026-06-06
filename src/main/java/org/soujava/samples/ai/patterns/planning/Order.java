@@ -7,7 +7,7 @@ import jakarta.nosql.Id;
 import java.util.UUID;
 
 @Entity
-public record Order(@Id UUID id, @Column String email, @Column String product, @Column OrderStatus status) {
+public record Order(@Id UUID id, @Column String customerId, @Column String product, @Column OrderStatus status) {
 
 
     public static Order of(String email, String product) {
@@ -15,6 +15,6 @@ public record Order(@Id UUID id, @Column String email, @Column String product, @
     }
 
     public Order cancel() {
-        return new Order(id, email, product, OrderStatus.CANCELLED);
+        return new Order(id, customerId, product, OrderStatus.CANCELLED);
     }
 }
