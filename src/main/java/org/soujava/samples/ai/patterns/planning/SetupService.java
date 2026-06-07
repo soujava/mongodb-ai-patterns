@@ -29,6 +29,9 @@ public class SetupService {
             LOGGER.info("Created user: " + user.getEmail());
             return user;
         });
-        
+
+        Order pen = Order.of(alice, "Pen");
+        orderRepository.save(pen);
+        LOGGER.info("Created order for user: " + alice.getEmail() + " - Item: " + pen.id());
     }
 }
