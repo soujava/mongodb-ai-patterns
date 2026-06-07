@@ -31,7 +31,12 @@ public class OrderService {
     // Tool C (Requires the output of Tool B)
     @Tool("Cancels an order given an Order Number. Returns the refund status.")
     public String cancelOrder(String orderNumber) {
-        System.out.println("[TOOL EXECUTION] Calling payment gateway to cancel: " + orderNumber);
-        return "SUCCESS - $45.00 Refunded";
+        LOGGER.info("[TOOL EXECUTION] Calling payment gateway to cancel: " + orderNumber);
+        Optional<Order> order = repository.findByCustomerId(UUID.fromString(orderNumber));
+        order.ifPresent(o -> {
+            o.cancel();
+            repository.save(o);
+        });
+        return order.isPresent() ? "SUCCESS - $45.00 Refunded" : "ORDER_NOT_FOUND";
     }
 }
