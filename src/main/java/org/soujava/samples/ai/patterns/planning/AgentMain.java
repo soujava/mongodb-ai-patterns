@@ -10,6 +10,8 @@ public class AgentMain {
 
             // Fetch the Orchestrator Factory
             ResolutionAgentFactory factory = container.select(ResolutionAgentFactory.class).get();
+            var setupService = container.select(SetupService.class).get();
+            setupService.initializeData("alice@test.com");
             CustomerResolutionAgent agent = factory.createAgent();
 
             System.out.println("User: Hi, my email is alice@test.com. Please cancel my current order.");
