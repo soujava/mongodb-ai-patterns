@@ -23,12 +23,12 @@ public class SetupService {
         LOGGER.info("Initializing sample data...");
 
         // Create sample users
-        userRepository.findByEmail(email).orElseGet(() -> {
+        User alice = userRepository.findByEmail(email).orElseGet(() -> {
             User user = User.of(email, "Alice");
             userRepository.save(user);
             LOGGER.info("Created user: " + user.getEmail());
             return user;
         });
-        User alice = User.of("alice@test.com", "Alice");
-
+        
+    }
 }
