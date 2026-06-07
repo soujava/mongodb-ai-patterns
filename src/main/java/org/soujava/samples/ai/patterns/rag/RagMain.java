@@ -15,14 +15,12 @@ public class RagMain {
     public static void main(String[] args) {
         try (SeContainer container = SeContainerInitializer.newInstance().initialize()) {
 
-            // 1. Fetch dependencies from CDI
+            // 0. Fetch dependencies from CDI
             EmbeddingModel embeddingModel = container.select(EmbeddingModel.class).get();
             EmbeddingStore<TextSegment> vectorDb = container.select(new TypeLiteral<EmbeddingStore<TextSegment>>() {}).get();
             HRPolicyAgent agent = container.select(HRPolicyAgent.class).get();
 
-            // ==========================================
             // PHASE 1: DATA INGESTION
-            // ==========================================
             System.out.println("Ingesting HR Policies into Vector DB...");
 
             Document document = Document.from(
@@ -40,9 +38,7 @@ public class RagMain {
 
             ingestor.ingest(document);
 
-            // ==========================================
             // PHASE 2: RETRIEVAL & GENERATION
-            // ==========================================
             System.out.println("User: What is my hardware stipend limit?");
 
             // The framework automatically takes this String, embeds it, queries the DB,
