@@ -4,6 +4,7 @@ import dev.langchain4j.data.document.Document;
 import dev.langchain4j.data.document.splitter.DocumentSplitters;
 import dev.langchain4j.data.segment.TextSegment;
 import dev.langchain4j.model.embedding.EmbeddingModel;
+import dev.langchain4j.store.embedding.EmbeddingSearchRequest;
 import dev.langchain4j.store.embedding.EmbeddingStore;
 import dev.langchain4j.store.embedding.EmbeddingStoreIngestor;
 import jakarta.enterprise.inject.se.SeContainer;
@@ -29,14 +30,29 @@ public class RagMain {
                             "Core hours are 10:00 AM to 3:00 PM EST."
             );
 
-            // Chunk the document and store the embeddings
-            EmbeddingStoreIngestor ingestor = EmbeddingStoreIngestor.builder()
-                    .documentSplitter(DocumentSplitters.recursive(100, 10)) // 100 tokens, 10 token overlap
-                    .embeddingModel(embeddingModel)
-                    .embeddingStore(vectorDb)
-                    .build();
+            var documentEmbedding = embeddingModel.embed(document.text()).content();
+            var result =
+                    vectorDb.search(
+                            EmbeddingSearchRequest.builder()
+                                    .queryEmbedding(documentEmbedding)
+                                    .maxResults(5)
+                                    .build());
 
-            ingestor.ingest(document);
+            System.out.println(result.matches().size());
+
+            if (result.matches().isEmpty()) {
+                System.out.println("No existing embeddings found for the document. Proceeding with ingestion.");
+                // Chunk the document and store the embeddings
+                EmbeddingStoreIngestor ingestor = EmbeddingStoreIngestor.builder()
+                        .documentSplitter(DocumentSplitters.recursive(100, 10)) // 100 tokens, 10 token overlap
+                        .embeddingModel(embeddingModel)
+                        .embeddingStore(vectorDb)
+                        .build();
+
+                ingestor.ingest(document);
+            } else{
+                System.out.println("Document already ingested. Skipping ingestion step.");
+            }
 
             // PHASE 2: RETRIEVAL & GENERATION
             System.out.println("User: What is my hardware stipend limit?");
