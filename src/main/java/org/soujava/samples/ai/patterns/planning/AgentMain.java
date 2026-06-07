@@ -4,6 +4,7 @@ import jakarta.enterprise.inject.se.SeContainer;
 import jakarta.enterprise.inject.se.SeContainerInitializer;
 
 public class AgentMain {
+    
     public static void main(String[] args) {
         // Spin up the CDI container in a standard Java SE application
         try (SeContainer container = SeContainerInitializer.newInstance().initialize()) {
