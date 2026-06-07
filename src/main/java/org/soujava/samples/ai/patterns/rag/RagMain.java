@@ -18,7 +18,8 @@ public class RagMain {
 
             // 0. Fetch dependencies from CDI
             EmbeddingModel embeddingModel = container.select(EmbeddingModel.class).get();
-            EmbeddingStore<TextSegment> vectorDb = container.select(new TypeLiteral<EmbeddingStore<TextSegment>>() {}).get();
+            EmbeddingStore<TextSegment> vectorDb = container.select(new TypeLiteral<EmbeddingStore<TextSegment>>() {
+            }).get();
             HRPolicyAgent agent = container.select(HRPolicyAgent.class).get();
 
             // PHASE 1: DATA INGESTION
@@ -50,7 +51,7 @@ public class RagMain {
                         .build();
 
                 ingestor.ingest(document);
-            } else{
+            } else {
                 System.out.println("Document already ingested. Skipping ingestion step.");
             }
 
