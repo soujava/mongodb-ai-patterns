@@ -3,8 +3,12 @@ package org.soujava.samples.ai.patterns.planning;
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.inject.Inject;
 
+import java.util.logging.Logger;
+
 @ApplicationScoped
 public class SetupService {
+
+    private static final Logger LOGGER = Logger.getLogger(SetupService.class.getName());
 
     private final UserRepository userRepository;
     private final OrderRepository orderRepository;
@@ -14,4 +18,17 @@ public class SetupService {
         this.userRepository = userRepository;
         this.orderRepository = orderRepository;
     }
+
+    public void initializeData(String email) {
+        LOGGER.info("Initializing sample data...");
+
+        // Create sample users
+        userRepository.findByEmail(email).orElseGet(() -> {
+            User user = User.of(email, "Alice");
+            userRepository.save(user);
+            LOGGER.info("Created user: " + user.getEmail());
+            return user;
+        });
+        User alice = User.of("alice@test.com", "Alice");
+
 }
