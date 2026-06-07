@@ -27,6 +27,11 @@
 
     <dependencies>
         <dependency>
+            <groupId>dev.langchain4j</groupId>
+            <artifactId>langchain4j-mongodb-atlas</artifactId>
+            <version>1.15.1-beta25</version>
+        </dependency>
+        <dependency>
             <groupId>org.eclipse.jnosql.databases</groupId>
             <artifactId>jnosql-mongodb</artifactId>
             <version>${jnosql.version}</version>
